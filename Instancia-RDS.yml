@@ -54,8 +54,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'VPC-Alberto'
-        - Key: Keep
-          Value: 'true'
+        
 
   InternetGateway:
     Type: AWS::EC2::InternetGateway
@@ -63,8 +62,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Puerta de enlace'
-        - Key: Keep
-          Value: 'true'
+        
 
   InternetGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -86,8 +84,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred Publica'
-        - Key: Keep
-          Value: 'true'
+       
 
   PublicSubnet2:
     Type: AWS::EC2::Subnet
@@ -101,8 +98,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred_Publica_2'
-        - Key: Keep
-          Value: 'true'
+       
    PublicSubnet3:
     Type: AWS::EC2::Subnet
     Properties:
@@ -115,9 +111,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred_Publica_3'
-        - Key: Keep
-          Value: 'true'
-
+       
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
@@ -129,8 +123,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred_Privada'
-        - Key: Keep
-          Value: 'true'
+        
 
   PrivateSubnet2:
     Type: AWS::EC2::Subnet
@@ -143,8 +136,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred_Privada_2'
-        - Key: Keep
-          Value: 'true'
+       
   
   PrivateSubnet3:
     Type: AWS::EC2::Subnet
@@ -157,8 +149,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred_Privada_3'
-        - Key: Keep
-          Value: 'true'
+        
 
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -168,8 +159,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Tabla de enrutamiento publica'
-        - Key: Keep
-          Value: 'true'
+        
 
   PublicRoute:
     Type: AWS::EC2::Route
@@ -199,8 +189,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Tabla_de_enrutamiento_privada'
-        - Key: Keep
-          Value: 'true'
+       
 
   PrivateSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -221,8 +210,7 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "Grupo_De_Subredes"
-        - Key: Keep
-          Value: 'true'
+        
 
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
@@ -242,9 +230,7 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "conexion_ssh_mysql"
-        - Key: Keep
-          Value: 'true'
-
+        
 
   DBInstance:
     Type: 'AWS::RDS::DBInstance'
@@ -266,14 +252,12 @@ Resources:
       Tags:
         - Key: Name
           Value: 'rds-alberto'
-        - Key: Keep
-          Value: 'true'
   
   
   Instancia:
     Type: "AWS::EC2::Instance"
     Properties:
-      ImageId: "ami-09744628bed84e434"
+      ImageId: "ami-053b0d53c279acc90"
       InstanceType: "t2.micro"
       KeyName: Clave-Alberto
       SecurityGroupIds:
@@ -288,9 +272,3 @@ Resources:
       Tags:
         - Key: "Name"
           Value: "Instancia-Alberto"
-        - Key: Keep
-          Value: 'true'
-
-          Value: "Instancia-Alberto2"
-        - Key: Keep
-          Value: 'true'
