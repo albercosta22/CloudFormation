@@ -222,6 +222,14 @@ Resources:
         Ref: PrivateRouteTable1
       SubnetId:  
         Ref: PrivateSubnet3
+        
+  RouteNATGateway:
+    DependsOn: NATGateway
+    Type: AWS::EC2::Route
+    Properties:
+      RouteTableId: !Ref PrivateRouteTable1
+      DestinationCidrBlock: '0.0.0.0/0'
+      NatGatewayId: !Ref NATGateway
 
   SecurityGroup:
     Type: AWS::EC2::SecurityGroup
