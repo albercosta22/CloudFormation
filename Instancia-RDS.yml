@@ -62,7 +62,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Puerta de enlace'
-        
+       
 
   InternetGatewayAttachment:
     Type: AWS::EC2::VPCGatewayAttachment
@@ -99,7 +99,7 @@ Resources:
         - Key: Name
           Value: 'Subred_Publica_2'
        
-   PublicSubnet3:
+  PublicSubnet3:
     Type: AWS::EC2::Subnet
     Properties:
       VpcId:  
@@ -112,6 +112,7 @@ Resources:
         - Key: Name
           Value: 'Subred_Publica_3'
        
+
   PrivateSubnet1:
     Type: AWS::EC2::Subnet
     Properties:
@@ -136,7 +137,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Subred_Privada_2'
-       
+        
   
   PrivateSubnet3:
     Type: AWS::EC2::Subnet
@@ -150,7 +151,6 @@ Resources:
         - Key: Name
           Value: 'Subred_Privada_3'
         
-
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
     Properties:
@@ -159,7 +159,6 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Tabla de enrutamiento publica'
-        
 
   PublicRoute:
     Type: AWS::EC2::Route
@@ -189,7 +188,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'Tabla_de_enrutamiento_privada'
-       
+        
 
   PrivateSubnet1RouteTableAssociation:
     Type: AWS::EC2::SubnetRouteTableAssociation
@@ -204,9 +203,9 @@ Resources:
     Properties:
       DBSubnetGroupDescription: 'Subredes para RDS'
       SubnetIds:
-        - Ref: PublicSubnet1
-        - Ref: PublicSubnet2
-        - Ref: PublicSubnet3
+        - Ref: PrivateSubnet1
+        - Ref: PrivateSubnet2
+        - Ref: PrivateSubnet3
       Tags:
         - Key: "Name"
           Value: "Grupo_De_Subredes"
@@ -232,6 +231,7 @@ Resources:
           Value: "conexion_ssh_mysql"
         
 
+
   DBInstance:
     Type: 'AWS::RDS::DBInstance'
     Properties:
@@ -252,6 +252,7 @@ Resources:
       Tags:
         - Key: Name
           Value: 'rds-alberto'
+      
   
   
   Instancia:
@@ -263,12 +264,16 @@ Resources:
       SecurityGroupIds:
         - Ref: SecurityGroup
       SubnetId: 
-        Ref: PublicSubnet1
+        Ref: PublicSubnet3
       UserData:
-        Fn::Base64: !Sub |
-          #!/bin/bash
-          sudo apt install mysql-server
-          sudo systemctl start mysql.service
+        Fn::Base64: 
+          !Sub |
+            #!/bin/bash
+            sudo su
+            sudo apt-get update -y
+            sudo apt-get install -y mysql-server
+          
       Tags:
         - Key: "Name"
           Value: "Instancia-Alberto"
+        
